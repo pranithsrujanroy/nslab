@@ -1,0 +1,26 @@
+n -t * -s 0  -x 311.64461924305402 -y 323.72967611240671 -Z 0 -z 30  -v circle -c black
+n -t * -s 1  -x 469.15836421267988 -y 105.72588541811606 -Z 0 -z 30  -v circle -c black
+V -t * -v 1.0a5 -a 0
+W -t * -x 500 -y 500
+A -t * -n 1 -p 0 -o 0x7fffffff -c 30 -a 1
+A -t * -h 1 -m 1073741823 -s 0
++ -t 1.000000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 0 -k AGT 
+- -t 1.000000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 0 -k AGT
+h -t 1.000000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 0 -k AGT
++ -t 1.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR 
+- -t 1.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR
+h -t 1.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR
++ -t 3.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR 
+- -t 3.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR
+h -t 3.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR
++ -t 4.000000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 1 -k AGT 
+- -t 4.000000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 1 -k AGT
+h -t 4.000000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 1 -k AGT
++ -t 7.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR 
+- -t 7.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR
+h -t 7.000000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR
++ -t 12.500000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR 
+- -t 12.500000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR
+h -t 12.500000000 -s 0 -d -1 -p AODV -e 48 -c 2 -a 0 -i 0 -k RTR
+d -t 20.000000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 0 -k RTR
+d -t 20.000000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 1 -k RTR

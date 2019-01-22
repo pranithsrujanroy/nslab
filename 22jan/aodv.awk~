@@ -1,0 +1,26 @@
+BEGIN{
+	tcp_sent=0;
+	tcp_recv=0;
+	s_time=0;
+	r_time=0;
+	eted=0;
+}
+{
+	if($1=="s"&&$4=="AGT"&&$7=="tcp"){
+		tcp_sent++;
+		s_time=$2;
+	}
+	if($1=="r"&&$4=="AGT"&&$7=="tcp"){
+		tcp_recv++;
+		r_time=$2;
+		delay=delay+(r_time-s_time);
+	}
+	
+}
+END{
+printf("TCP packets sent %d\n",tcp_sent);
+printf("TCP packets received %d\n",tcp_recv);
+printf("packet delivery ratio %f\n", (tcp_recv/tcp_sent));
+printf("avg end to end delay %f sec\n", (delay/tcp_sent)*1000);
+printf("throughput: %f \n", (tcp_recv/3)*8);
+}
