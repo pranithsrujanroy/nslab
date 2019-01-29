@@ -1,0 +1,65 @@
+BEGIN{
+	sent = -1;
+	received = 0;
+	dropped = 0;
+	count = 0;
+}
+{
+	
+	if($4 == "AGT" && $1 == "s") {
+	start_time[$6] = $2;
+	} 
+	else if(($7 == "tcp") && ($1 == "r")) {
+	end_time[$6] = $2;
+	}
+	else if($1 == "D" && $7 == "tcp") {
+	end_time[$6] = -1;
+	}
+	
+	event = $1
+  	time = $2
+  	node_id = $3
+  	pkt_size = $8
+  	level = $4
+	if (level == "AGT" && event == "s" && $7 == "tcp") {
+    	sent++
+    if (!startTime || (time < startTime)) {
+      startTime = time
+    }
+  	}
+
+  	if (level == "AGT" && event == "r" && $7 == "tcp") {
+    	receive++
+    	if (time > stopTime) {
+      		stopTime = time
+    	}
+    	recvdSize += pkt_size
+  	}
+}
+END{
+	for(i=0; i<=sent; i++) {
+		if(end_time[i] > 0) {
+			delay[i] = end_time[i] - start_time[i];
+			count++;
+		}
+		else{
+			delay[i] = -1;
+		}
+	}
+	
+	for(i=0; i<count; i++) {
+		if(delay[i] > 0) {
+			n_to_n_delay = n_to_n_delay + delay[i];
+		}
+	}
+	
+	n_to_n_delay = n_to_n_delay/count;
+
+
+	print "Average End-to-End Delay = " n_to_n_delay * 1000 " ms";
+	printf("sent_packets\t %d\n",sent+1);
+  	printf("received_packets %d\n",receive);
+  	printf("Packet Delivery Ratio %.2f\n",(receive/(sent+1)*100));
+  	printf("Average Throughput[kbps] = %.2f\tStartTime=%.2f\tStopTime = %.2f\n", (recvdSize/(stopTime-startTime))*(8/1000),startTime,stopTime);
+  	
+}
